@@ -1,0 +1,81 @@
+<html>
+<head>
+        <style>
+            * {
+                margin: 0px;
+                padding: 0px;
+            }
+            #HD {
+                position: absolute;
+                width: 1280px;
+                height: 720px;
+                background-color: rgba(0, 255, 0, 0.5);  /* 50% 不透過 */
+                text-align: center;
+            }
+            
+            #FullHD {
+                position: absolute;
+                width: 1920px;
+                height: 	1080px;
+                background-color: rgba(0, 0, 255, 0.5);  /* 50% 不透過 */
+                text-align: center;
+            }
+            
+            #posid {
+                left: 100px;
+                top: 100px;
+                position: absolute;
+                width: 200px;
+                heigt: 100px;
+                text-align: center;
+            
+            }
+            #bHD{
+                position: absolute;
+            }
+        </style>
+</head>
+
+
+    <body>
+        <script type="text/javascript">
+
+  function resizeWindow(){
+    let s = window.innerWidth + " x " + window.innerHeight;
+    document.getElementById("posid").innerHTML=s;
+}
+
+function setHD()
+{
+        let deltaX = window.innerWidth - 1280;
+        let deltaY = window.innerHeight - 720;
+        window.resizeBy(-deltaX, -deltaY);
+}
+
+let ready = function(){
+  // Handler when the DOM is fully loaded
+    document.body.style.overflow = "hidden";
+
+    window.addEventListener('resize', resizeWindow);
+    resizeWindow();
+};
+
+
+// Bootstrap
+if ( document.readyState === "complete" ||
+    (document.readyState !== "loading" && !document.documentElement.doScroll)
+) {
+  ready();
+} else {
+  document.addEventListener("DOMContentLoaded", ready);
+}
+
+    </script>
+        <div id="HD"> HD 1280x720
+        </div>
+        <div id="FullHD"> Full HD 1920x1080
+        </div>
+        <div id="posid"></div>
+        <button id="bHD" onclick="setHD()">HD</button>
+    </body>
+</html>
